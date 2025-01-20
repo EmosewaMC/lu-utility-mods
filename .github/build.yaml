@@ -1,0 +1,38 @@
+name: CI
+on: push
+jobs:
+  build-and-test:
+    runs-on: windows-2022
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup MSVC
+      uses: microsoft/setup-msbuild@v1.3.1
+      with:
+        vs-version: '16.27'
+        msbuild-architecture: x64
+    - name: Setup
+      run: premake5.exe premake5.lua vs2022 --lu_dir="mods"
+    - name: Get NuGet Packages
+      run: msbuild Lu_mods.sln /property:Configuration=Release -t:restore -p:RestorePackagesConfig=true
+    - name: Build
+      run: msbuild Lu_mods.sln /property:Configuration=Release
+    - name: Archive Build
+      if: github.ref == 'refs/heads/master'
+      uses: thedoctor0/zip-release@0.7.1
+      with:
+        type: 'zip'
+        path: './build/**'
+        filename: 'build/Lu_mods-Nightly.zip'
+        exclusions: '*.git* /*node_modules/* .editorconfig'
+        recursive_exclusions: '*.lib *.pdb *.exp'
+    - name: Update Nightly Release
+      if: github.ref == 'refs/heads/master'
+      uses: andelf/nightly-release@main
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: nightly
+        name: 'Nightly Release'
+        prerelease: true
+        files: |
+          build/Lu_mods-Nightly.zip
