@@ -1,7 +1,7 @@
 name: CI
 on: push
 jobs:
-  build-and-test:
+  build:
     runs-on: windows-2022
     steps:
     - uses: actions/checkout@v3
