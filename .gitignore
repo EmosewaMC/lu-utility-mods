@@ -1,0 +1,7 @@
+.vs
+CharacterSaver
+CharacterSaverStandalone
+obj
+*.vcxproj
+*.user
+*.sln
