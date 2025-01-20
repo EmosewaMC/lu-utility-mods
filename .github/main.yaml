@@ -17,7 +17,7 @@ jobs:
     - name: Build
       run: msbuild Lu_mods.sln /property:Configuration=Release
     - name: Archive Build
-      if: github.ref == 'refs/heads/master'
+      if: github.ref == 'refs/heads/main'
       uses: thedoctor0/zip-release@0.7.1
       with:
         type: 'zip'
@@ -26,7 +26,7 @@ jobs:
         exclusions: '*.git* /*node_modules/* .editorconfig'
         recursive_exclusions: '*.lib *.pdb *.exp'
     - name: Update Nightly Release
-      if: github.ref == 'refs/heads/master'
+      if: github.ref == 'refs/heads/main'
       uses: andelf/nightly-release@main
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
