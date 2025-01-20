@@ -7,6 +7,9 @@ newoption {
 CharacterSaverProjectName = "CharacterSaver"
 CharacterSaverStandaloneProjectName = "CharacterSaverStandalone"
 
+AuthPortChangerName = "AuthPortChanger"
+AuthPortChangerStandaloneProjectName = "AuthPortChangerStandalone"
+
 CharacterSaverFolder = path.getabsolute("").."\\"
 
 workspace ("Lu_mods")
@@ -31,7 +34,20 @@ workspace ("Lu_mods")
 		targetdir ("build/"..CharacterSaverStandaloneProjectName)
 
 		files { "dllmain.cpp", "Source.def" }
-		defines { "STANDALONE_CHARACTER_SAVER=1" }
+		defines { "STANDALONE=1" }
+		targetname ("dinput8")
+
+	project (AuthPortChangerName)
+		targetdir ("build/"..AuthPortChangerName)
+
+		files { "dllmainAuthPortChanger.cpp" }
+
+	-- The standalone version can be run on its own with no other mods. Place in client folder with legouniverse.exe to use.
+	project (AuthPortChangerStandaloneProjectName)
+		targetdir ("build/"..AuthPortChangerStandaloneProjectName)
+
+		files { "dllmainAuthPortChanger.cpp", "Source.def" }
+		defines { "STANDALONE=1" }
 		targetname ("dinput8")
 
 	project ("*")

@@ -5,3 +5,4 @@ obj
 *.vcxproj
 *.user
 *.sln
+build

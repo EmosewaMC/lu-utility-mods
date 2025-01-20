@@ -188,7 +188,7 @@ struct T {
 	}
 };
 
-#ifdef STANDALONE_CHARACTER_SAVER
+#ifdef STANDALONE
 
 #define CALLPROC(function, ...) reinterpret_cast<decltype(function) *>(GetProcAddress(dinput8, #function))(__VA_ARGS__);
 
@@ -216,7 +216,7 @@ extern "C" {
 	}
 }
 
-#endif // STANDALONE_CHARACTER_SAVER
+#endif // STANDALONE
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved) {
 	switch (ul_reason_for_call) {
