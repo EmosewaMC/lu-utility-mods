@@ -36,3 +36,4 @@ jobs:
         prerelease: true
         files: |
           build/Lu_mods-Nightly.zip
+
