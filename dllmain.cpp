@@ -10,7 +10,6 @@
 #include <vector>
 #include <optional>
 #include <filesystem>
-
 #include <shlobj_core.h>
 #include <Unknwnbase.h>
 

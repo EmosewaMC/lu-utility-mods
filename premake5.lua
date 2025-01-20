@@ -22,14 +22,14 @@ workspace ("Lu_mods")
 	flags { "MultiProcessorCompile" }
 
 	project (CharacterSaverProjectName)
-		targetdir (CharacterSaverProjectName)
-	
+		targetdir ("build/"..CharacterSaverProjectName)
+
 		files { "dllmain.cpp" }
-	
+
 	-- The standalone version can be run on its own with no other mods. Place in client folder with legouniverse.exe to use.
 	project (CharacterSaverStandaloneProjectName)
-		targetdir (CharacterSaverStandaloneProjectName)
-	
+		targetdir ("build/"..CharacterSaverStandaloneProjectName)
+
 		files { "dllmain.cpp", "Source.def" }
 		defines { "STANDALONE_CHARACTER_SAVER=1" }
 		targetname ("dinput8")

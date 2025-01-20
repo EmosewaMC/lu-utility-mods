@@ -11,7 +11,7 @@ jobs:
         vs-version: '16.27'
         msbuild-architecture: x64
     - name: Setup
-      run: premake5.exe premake5.lua vs2022 --lu_dir="mods"
+      run: python3 Setup.py
     - name: Get NuGet Packages
       run: msbuild Lu_mods.sln /property:Configuration=Release -t:restore -p:RestorePackagesConfig=true
     - name: Build
@@ -36,3 +36,5 @@ jobs:
         prerelease: true
         files: |
           build/Lu_mods-Nightly.zip
+
+
